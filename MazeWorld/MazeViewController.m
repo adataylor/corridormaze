@@ -24,7 +24,7 @@
     spriteView.showsDrawCount = YES;
     spriteView.showsNodeCount = YES;
     spriteView.showsFPS = YES;
-	
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,12 +35,9 @@
 
 - (void) viewWillAppear:(BOOL)animated {
 
-    WelcomeScene* hello = [[WelcomeScene alloc] initWithSize:CGSizeMake(768, 1024)];
+    WelcomeScene* hello = [[WelcomeScene alloc] initWithSize:CGSizeMake(1024, 768)];
     SKView *spriteView = (SKView*) self.view;
     [spriteView presentScene:hello];
 }
-
-
-
 
 @end

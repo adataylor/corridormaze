@@ -7,6 +7,11 @@
 //
 
 #import "WelcomeScene.h"
+#import "MazeScene.h"
+
+@interface WelcomeScene ()
+    @property BOOL contentCreated;
+@end
 
 @implementation WelcomeScene
 
@@ -55,7 +60,15 @@
         SKAction *remove = [SKAction removeFromParent];
         SKAction *moveSequence = [SKAction sequence:@[moveUp, zoom,
                                                       pause, fadeAway, remove]];
-        [helloNode runAction: moveSequence];
+        [helloNode runAction: moveSequence completion:^{
+            
+            SKScene* adventureScene = [[MazeScene alloc] initWithSize:self.size];
+            
+            SKTransition *doors = [SKTransition doorsOpenHorizontalWithDuration:0.5];
+            
+            [self.view presentScene:adventureScene transition:doors];
+            
+        }];
     }
     
 }

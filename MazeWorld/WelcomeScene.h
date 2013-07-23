@@ -10,6 +10,4 @@
 
 @interface WelcomeScene : SKScene
 
-@property BOOL contentCreated;
-
 @end

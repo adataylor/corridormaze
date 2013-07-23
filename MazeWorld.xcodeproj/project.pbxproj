@@ -22,6 +22,8 @@
 		60DD09DF179DACEB00B17D80 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DD09BE179DACEA00B17D80 /* UIKit.framework */; };
 		60DD09E7179DACEB00B17D80 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 60DD09E5179DACEB00B17D80 /* InfoPlist.strings */; };
 		60DD09E9179DACEB00B17D80 /* MazeWorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD09E8179DACEB00B17D80 /* MazeWorldTests.m */; };
+		60DD09F4179DADD700B17D80 /* WelcomeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD09F3179DADD700B17D80 /* WelcomeScene.m */; };
+		60DD09F7179DB12B00B17D80 /* MazeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 60DD09F6179DB12B00B17D80 /* MazeScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		60DD09E4179DACEB00B17D80 /* MazeWorldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MazeWorldTests-Info.plist"; sourceTree = "<group>"; };
 		60DD09E6179DACEB00B17D80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		60DD09E8179DACEB00B17D80 /* MazeWorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MazeWorldTests.m; sourceTree = "<group>"; };
+		60DD09F2179DADD700B17D80 /* WelcomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeScene.h; sourceTree = "<group>"; };
+		60DD09F3179DADD700B17D80 /* WelcomeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeScene.m; sourceTree = "<group>"; };
+		60DD09F5179DB12B00B17D80 /* MazeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MazeScene.h; sourceTree = "<group>"; };
+		60DD09F6179DB12B00B17D80 /* MazeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MazeScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,10 @@
 				60DD09CF179DACEA00B17D80 /* Main_iPad.storyboard */,
 				60DD09D2179DACEA00B17D80 /* MazeViewController.h */,
 				60DD09D3179DACEA00B17D80 /* MazeViewController.m */,
+				60DD09F2179DADD700B17D80 /* WelcomeScene.h */,
+				60DD09F3179DADD700B17D80 /* WelcomeScene.m */,
+				60DD09F5179DB12B00B17D80 /* MazeScene.h */,
+				60DD09F6179DB12B00B17D80 /* MazeScene.m */,
 				60DD09D5179DACEA00B17D80 /* Images.xcassets */,
 				60DD09C1179DACEA00B17D80 /* Supporting Files */,
 			);
@@ -256,7 +266,9 @@
 			files = (
 				60DD09C7179DACEA00B17D80 /* main.m in Sources */,
 				60DD09CB179DACEA00B17D80 /* MazeAppDelegate.m in Sources */,
+				60DD09F7179DB12B00B17D80 /* MazeScene.m in Sources */,
 				60DD09D4179DACEA00B17D80 /* MazeViewController.m in Sources */,
+				60DD09F4179DADD700B17D80 /* WelcomeScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
