@@ -15,6 +15,7 @@
 @interface MazeScene ()
 @property BOOL contentCreated;
 @property SKSpriteNode *player;
+@property NSMutableArray *grooves;
 @end
 
 
@@ -24,6 +25,10 @@ static const uint32_t playerCategory = 0x1 << 0;
 static const uint32_t wallCategory = 0x1 << 1;
 static const uint32_t catCategory = 0x1 << 2;
 static const uint32_t thingCategory = 0x1 << 3;
+
+static const uint32_t NUM_ROW = 10;
+static const uint32_t NUM_COL = 16;
+static const uint32_t WALL_WIDTH = 10;
 
 
 - (void)didMoveToView:(SKView *)view
@@ -41,17 +46,20 @@ static const uint32_t thingCategory = 0x1 << 3;
 
 - (void)createSceneContents
 {
-    self.backgroundColor = [SKColor brownColor];
+    self.backgroundColor = [SKColor grayColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
     _player = [self newPlayer];
     _player.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
 	[self addChild:_player];
     
+    //[self makeGrooves];
     
     [self makeObstacles];
     
 }
+
+
 
 - (void) makeObstacles {
     SKAction *makeRocks = [SKAction sequence: @[
@@ -67,6 +75,31 @@ static const uint32_t thingCategory = 0x1 << 3;
                                                 ]];
     [self runAction: [SKAction repeatAction:makeRocks count:60]];
 
+}
+
+- (void) makeGrooves
+{
+    SKSpriteNode *groove = nil;
+    
+    int colSize = self.size.width / NUM_COL;
+    int rowSize = self.size.height / NUM_ROW;
+    
+    for (int i = 2; i < NUM_ROW - 1; i++) {
+        for (int j = 2; j < NUM_COL - 1; j++) {
+            groove = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(WALL_WIDTH,colSize)];
+            groove.position = CGPointMake(j*rowSize, i*colSize);
+            groove.name = @"groove";
+            [self addChild:groove];
+    
+
+            groove = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(rowSize,WALL_WIDTH)];
+            groove.position = CGPointMake(j*colSize, i*rowSize);
+            groove.name = @"groove";
+            [self addChild:groove];
+        }
+    }
+    
+    
 }
 
 
@@ -125,12 +158,11 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
     player.physicsBody.dynamic = YES;
     player.physicsBody.affectedByGravity = NO;
-    //player.physicsBody.mass = 2000000000000;
+
+    player.physicsBody.allowsRotation = NO;
     
     player.physicsBody.categoryBitMask = playerCategory;
-    
     player.physicsBody.collisionBitMask = wallCategory | catCategory;
-    
     player.physicsBody.contactTestBitMask = wallCategory | catCategory;
     
     return player;
@@ -171,7 +203,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 //    [self.player runAction:moveToClick withKey:@"moveToClick"];
     
     
-    CGFloat bearingRadians = atan2f(charPos.y - clickPoint.y, charPos.x - clickPoint.x);
+    CGFloat bearingRadians = atan2f(clickPoint.y, clickPoint.x);
     CGFloat myDirection = bearingRadians * (180. / M_PI);
     
     static const CGFloat thrust = 60.12;
@@ -188,7 +220,7 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     NSLog(@"diffY: %.02f", clickPoint.y-charPos.y);
     
     
-    //[_player.physicsBody applyForce:thrustVector];
+    [_player.physicsBody applyForce:thrustVector];
     
     
     
