@@ -171,22 +171,22 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    [self move:event];
+    [self move:event withTouches:touches];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    [self move:event];
+    [self move:event withTouches:touches];
 }
 
--(void) move:(UIEvent*)event {
+-(void) move:(UIEvent*)event withTouches:(NSSet *)touches {
     CGPoint charPos = self.player.position;
     
     float speed = 800.0;
     
-    UITouch* touch = [[event allTouches] anyObject];
-    CGPoint clickPoint = [touch locationInNode:self.player];
+    UITouch* touch1 = [[event allTouches] anyObject];
+    CGPoint clickPoint = [touch1 locationInNode:self.player];
     
     
 //    NSLog(@"player X: %.02f", self.player.position.x);
@@ -222,7 +222,13 @@ static inline CGFloat skRand(CGFloat low, CGFloat high) {
     
     [_player.physicsBody applyForce:thrustVector];
     
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInNode:self];
     
+    CGFloat xDirection = touchPoint.x - _player.position.x;
+    CGFloat yDirection = touchPoint.y - _player.position.y;
+    
+    [_player.physicsBody applyForce: CGPointMake(xDirection, yDirection)];
     
     
 }

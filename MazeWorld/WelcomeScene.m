@@ -9,6 +9,7 @@
 #import "WelcomeScene.h"
 #import "MazeScene.h"
 
+
 @interface WelcomeScene ()
     @property BOOL contentCreated;
 @end
